@@ -1,31 +1,53 @@
-import { Link, Tabs } from 'expo-router';
-
-import { HeaderButton } from '../../components/HeaderButton';
-import { TabBarIcon } from '../../components/TabBarIcon';
+import { Ionicons } from '@expo/vector-icons';
+import { Tabs } from 'expo-router';
 
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: 'black',
+        headerShown: false,
+        tabBarActiveTintColor: '#FF7A1A',
+        tabBarInactiveTintColor: '#5A627A',
+        tabBarStyle: {
+          backgroundColor: '#0A0E17',
+          borderTopColor: '#26304A',
+        },
+        tabBarLabelStyle: { fontSize: 11, fontWeight: '600' },
       }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <HeaderButton />
-            </Link>
+          title: 'Matches',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="football" color={color} size={size} />
           ),
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="standings"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Standings',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="podium" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="bracket"
+        options={{
+          title: 'Bracket',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="git-network" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="teams"
+        options={{
+          title: 'Teams',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="people" color={color} size={size} />
+          ),
         }}
       />
     </Tabs>
