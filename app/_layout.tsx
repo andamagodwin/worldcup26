@@ -36,6 +36,8 @@ const headerStyle = {
   headerTintColor: COLORS.white,
   headerTitleStyle: { fontFamily: 'Poppins_700Bold' },
   headerShadowVisible: false,
+  // Show only the chevron on detail screens (hides the "(tabs)" back label).
+  headerBackButtonDisplayMode: 'minimal' as const,
 };
 
 export default function RootLayout() {

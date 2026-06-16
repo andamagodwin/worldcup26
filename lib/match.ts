@@ -22,14 +22,18 @@ export function liveLabel(g: Game): string {
  * Parse a postgres-style array string like
  *   {"Nestory Irankunda 27'","C. Metcalfe 75'"}
  * into ["Nestory Irankunda 27'", "C. Metcalfe 75'"].
+ *
+ * Elements are matched as whole double-quoted tokens (or bare, comma-separated
+ * tokens) so that an apostrophe inside a value — e.g. the minute marker `27'` —
+ * is never mistaken for a closing quote.
  */
 export function parseScorers(raw: string | undefined): string[] {
   if (!raw || raw === 'null' || raw === '{}') return [];
   const inner = raw.trim().replace(/^\{/, '').replace(/\}$/, '');
   if (!inner) return [];
-  return inner
-    .split(/","|',\s*'/)
-    .map((s) => s.replace(/^["']|["']$/g, '').trim())
+  const tokens = inner.match(/"(?:[^"\\]|\\.)*"|[^,]+/g) ?? [];
+  return tokens
+    .map((s) => s.trim().replace(/^"|"$/g, '').replace(/\\"/g, '"').trim())
     .filter(Boolean);
 }
 
