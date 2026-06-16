@@ -1,6 +1,6 @@
 // Shapes returned by the worldcup26.ir REST API. The API serialises most
 // numeric values as strings, so we keep them as strings here and coerce where
-// needed in lib/format.ts.
+// needed in lib/utils.ts (`num`) and the other lib modules.
 
 export interface Team {
   _id: string;

@@ -1,18 +1,20 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 
+import { COLORS } from '@/theme/colors';
+
 export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#FF7A1A',
-        tabBarInactiveTintColor: '#5A627A',
+        tabBarActiveTintColor: COLORS.brand,
+        tabBarInactiveTintColor: COLORS.faint,
         tabBarStyle: {
-          backgroundColor: '#0A0E17',
-          borderTopColor: '#26304A',
+          backgroundColor: COLORS.ink,
+          borderTopColor: COLORS.line,
         },
-        tabBarLabelStyle: { fontSize: 11, fontWeight: '600' },
+        tabBarLabelStyle: { fontSize: 11, fontFamily: 'Poppins_600SemiBold' },
       }}>
       <Tabs.Screen
         name="index"
@@ -47,6 +49,15 @@ export default function TabLayout() {
           title: 'Teams',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="people" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="stadiums"
+        options={{
+          title: 'Venues',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="business" color={color} size={size} />
           ),
         }}
       />
